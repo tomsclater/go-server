@@ -23,7 +23,7 @@ func helloHandler(w http.ResponseWriter, r *http.Request){
 		http.Error(w, "404 not found", http.StatusNotFound)
 		return
 	}
-	if r.Method != "GET"{
+	if r.Method != "GET" {
 		http.Error(w, "method is not supported", http.StatusNotFound)
 		return
 	}
@@ -31,7 +31,7 @@ func helloHandler(w http.ResponseWriter, r *http.Request){
 }
 
 func main() {
-	fileServer := http.FileServer(http.Dir("/static"))
+	fileServer := http.FileServer(http.Dir("./static"))
 	http.Handle("/", fileServer)
 	http.HandleFunc("/form", formHandler)
 	http.HandleFunc("/hello", helloHandler)
