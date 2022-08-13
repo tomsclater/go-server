@@ -1,14 +1,14 @@
 package main
 
-import(
+import (
 	"fmt"
 	"log"
 	"net/http"
 )
 
-func formHandler(w http.ResponseWriter, r *http.Request){
+func formHandler(w http.ResponseWriter, r *http.Request) {
 	if err := r.ParseForm(); err != nil {
-		fmt.Fprintf(w, "PraseForm(" err: "w", err)
+		fmt.Fprintf(w, "ParseForm() err: %v", err)
 		return
 	}
 	fmt.Fprintf(w, "POST request successful")
@@ -30,7 +30,7 @@ func helloHandler(w http.ResponseWriter, r *http.Request){
 	fmt.Fprintf(w, "hello!")
 }
 
-func main(){
+func main() {
 	fileServer := http.FileServer(http.Dir("/static"))
 	http.Handle("/", fileServer)
 	http.HandleFunc("/form", formHandler)
@@ -40,3 +40,4 @@ func main(){
 	if err := http.ListenAndServe(":8080", nil); err !=nil {
 		log.Fatal(err)
 	}
+}
